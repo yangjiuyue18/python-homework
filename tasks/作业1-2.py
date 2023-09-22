@@ -46,11 +46,11 @@ def custom_log(x):
 
 # 使用示例：
 x = 2
-# print(math.exp(x))
+print(math.exp(x))
 print(f"exp({x}) = {custom_exp(x)}")
-# print(math.cos(x))
+print(math.cos(x))
 print(f"cos({x}) = {custom_cos(x)}")
-# print(math.sin(x))
+print(math.sin(x))
 print(f"sin({x}) = {custom_sin(x)}")
-# print(math.log(x))
+print(math.log(x))
 print(f"log({x}) = {custom_log(x)}")
