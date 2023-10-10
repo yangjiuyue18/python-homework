@@ -40,6 +40,13 @@ class Dual:
             new_value = self.value ** exponent
             new_d = exponent * (self.value ** (exponent - 1)) * self.d
             return Dual(new_value, new_d)
+    
+    def __rsub__(self, other: Union["Dual", Number]) -> "Dual":
+         match other:
+            case Dual(o_value, o_d):
+                return Dual(o_value - self.value, o_d - self.d)
+            case Number():
+                return Dual(float(other) - self.value, -self.d)
 
     __rmul__ = __mul__
     __radd__ = __add__
