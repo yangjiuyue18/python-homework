@@ -51,7 +51,7 @@ class Dual:
     __rmul__ = __mul__
     __radd__ = __add__
 
-def diff(func: Callable[..., Dual]) -> Callable[..., List[float]]:
+def diffs(func: Callable[..., Dual]) -> Callable[..., List[float]]:
     def wrapper(*args, **kwargs):
 
         for i in range(len(args)):
@@ -64,9 +64,9 @@ def diff(func: Callable[..., Dual]) -> Callable[..., List[float]]:
 def f(x: float, y: float, z: float) -> float:
     return x * y + z - 5 * y
 
-f_diff = diff(f)
+f_diffs = diffs(f)
 
 # 计算在参数 x = 10, y = 10, z = 10 处关于 x、y 和 z 的导数值
-for result in f_diff(10,10,10):
+for result in f_diffs(10,10,10):
     print(result)
 # 输出结果应为 [10.0, 5.0, 1.0]
