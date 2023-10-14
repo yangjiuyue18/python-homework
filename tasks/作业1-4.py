@@ -1,4 +1,4 @@
-from typing import Callable, Union
+from typing import Callable, Union, Generator,Iterable
 from numbers import Number
 from dataclasses import dataclass
 import math
@@ -85,12 +85,14 @@ def log(x: Union[Dual, Number]) -> Dual:
         return Dual(math.log(x), 0)
 
 
-def diff(func: Callable[[float], float]) -> Callable[[float], float]:
-    return lambda x: func(Dual(x, 1.0)).d
+def diff(func: Callable[[float], float], xs: Iterable[float]) -> Generator[float, None,None]:
+    for x in xs:
+        yield func(Dual(x, 1.0)).d
 
 def f(x: float) -> float:
     return x + 5*x - cos(20 * log(12 - 20*x*x)) - 20*x
 
-df = diff(f)
-a = -0.5
-print(df(a))  # 输出f在x=-0.5处的导数  39.644950968544144
+xs = [-0.5,-0.3,0.1,0.5]
+for result in diff(f,xs):
+    print(result)
+# 输出f在x=-0.5处的导数  39.644950968544144

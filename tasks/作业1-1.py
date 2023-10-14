@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Union, Callable
+from typing import Union, Callable, Iterable,Generator
 from numbers import Number
 import re
 
@@ -57,15 +57,15 @@ class Dual:
     __rmul__ = __mul__
     __radd__ = __add__
 
-def diff(func: Callable[[float], float]) -> Callable[[float], float]:
-    return lambda x: func(Dual(x, 1.0)).d
+def diff(func: Callable[[float], float], xs = Iterable[float]) -> Generator[float, None,None]:
+    for x in xs:
+        yield func(Dual(x, 1.0)).d
 
 # Функция, которую будем дифференцировать
 def f(x: float) -> float:
     return 5 * x * x + 2 * x + 2
 
-f_diff = diff(f)
-
 # значение производной в точке x = 2
-a = f_diff(2)
-print(a)
+xs =[-2,-1,1,2]
+for test in diff(f,xs):
+    print(test)

@@ -53,11 +53,12 @@ class Dual:
 
 def diff(func: Callable[..., Dual]) -> Callable[..., List[float]]:
     def wrapper(*args, **kwargs):
-        grads = []
+
         for i in range(len(args)):
+
             dual_args = [Dual(arg, 1 if j == i else 0) for j, arg in enumerate(args)]
-            grads.append(func(*dual_args, **kwargs).d)
-        return grads
+            yield func(*dual_args, **kwargs).d
+
     return wrapper
 
 def f(x: float, y: float, z: float) -> float:
@@ -66,6 +67,6 @@ def f(x: float, y: float, z: float) -> float:
 f_diff = diff(f)
 
 # 计算在参数 x = 10, y = 10, z = 10 处关于 x、y 和 z 的导数值
-result = f_diff(10, 10, 10)
-print(result)
+for result in f_diff(10,10,10):
+    print(result)
 # 输出结果应为 [10.0, 5.0, 1.0]
