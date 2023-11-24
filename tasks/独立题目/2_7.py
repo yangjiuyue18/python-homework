@@ -4,10 +4,10 @@ import numpy as np
 
 A = np.random.randint(0, 100, size=(200, 50))
 
-# 步骤 1: 提取偶数列
+#提取偶数列
 even_columns = A[:, ::2]
 
-# 步骤 2: 提取奇数列
+# 提取奇数列
 odd_columns = A[:, 1::2]
 
 new_A = np.concatenate((even_columns,odd_columns), axis=1)

@@ -4,9 +4,8 @@ import numpy as np
 
 A = np.random.randint(0, 100, size=(200, 50))
 
-# 创建一个空的三维数组，形状为 10 x 200 x 50
-A_3d = np.empty((10, 200, 50))
+# 创建一个形状为10的一维数组，其元素为1到10
+factors = np.arange(1, 11)
 
-# 使用循环填充这个三维数组
-for i in range(10):
-    A_3d[i] = A * (i + 1)
+# 利用NumPy的广播机制将A乘以factors，得到所需的三维数组
+B = A * factors[:, np.newaxis, np.newaxis]

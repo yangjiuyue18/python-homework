@@ -9,4 +9,4 @@ A_split = np.split(A, 10)
 
 A_mean = np.sum(A_split, axis=0) / 10
 
-print(A_mean)
+print(A_mean.shape)

@@ -17,16 +17,16 @@ import numpy as np
 
 A = np.random.randint(0, 100, size=(200, 50))
 
-# 步骤 1: 将 A 展平为一维数组
+# 将 A 展平为一维数组
 flattened_A = A.flatten()
 
-# 步骤 2: 使用 argsort() 获取排序后的索引
+# 使用 argsort() 获取排序后的索引
 sorted_indices = np.argsort(flattened_A)
 
-# 步骤 3: 创建一个新数组，其元素是排序位置（从 1 开始计数）
+# 创建一个新数组，其元素是排序位置（从 1 开始计数）
 sorted_positions = np.argsort(sorted_indices) + 1
 
-# 步骤 4: 将新数组重塑为原始数组 A 的形状 A.shape用于获取原数组的形状
+# 将新数组重塑为原始数组 A 的形状 A.shape用于获取原数组的形状
 result = sorted_positions.reshape(A.shape)
 
 
