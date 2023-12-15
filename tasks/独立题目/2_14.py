@@ -47,7 +47,7 @@ plt.text(min_x, min_y, f'Minimum ({min_x:.2f}, {min_y:.2f})', color='red')
 # 设置图表标签和图例
 plt.xlabel('x')
 plt.ylabel('f(x)')
-plt.title('Function f(x) and Its Derivative with Moving Averages')
+plt.title('Скользящее среднее значение функции f(x) и ее производных')
 plt.legend()
 plt.grid(True)
 plt.show()

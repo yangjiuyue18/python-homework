@@ -29,7 +29,7 @@ walk_results = [optimized_walk(10_000) for _ in range(num_runs)]
 
 # 绘制分布图
 plt.figure(figsize=(10, 6))
-sns.kdeplot(walk_results, shade=True)
+sns.kdeplot(walk_results, fill=True)
 plt.title("Distribution of Walk(10,000) Results")
 plt.xlabel("Final Position")
 plt.ylabel("Density")
